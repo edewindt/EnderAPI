@@ -8,13 +8,13 @@ import (
 
 func Routes(app *fiber.App) {
 	app.Get("/data", handlers.GetAllCharData)
-	app.Get("/data/:id", handlers.GetAllCharData)
-	app.Get("/names", handlers.GetAllCharData)
-	app.Get("/names/:id", handlers.GetAllCharData)
-	app.Get("/quotes", handlers.GetAllCharData)
-	app.Get("/quotes/:id", handlers.GetAllCharData)
-	app.Get("/media", handlers.GetAllCharData)
-	app.Get("/media/:id", handlers.GetAllCharData)
+	app.Get("/data/:id", handlers.GetCharData)
+	app.Get("/names", handlers.GetNames)
+	app.Get("/names/:id", handlers.GetName)
+	app.Get("/quotes", handlers.GetQuotes)
+	app.Get("/quotes/:id", handlers.GetQuote)
+	app.Get("/media", handlers.GetAllMedia)
+	app.Get("/media/:id", handlers.GetMedia)
 }
 
 func main() {
