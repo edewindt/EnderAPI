@@ -3,21 +3,17 @@ package handlers
 import (
 	"EnderAPI/env"
 	"context"
-	"fmt"
-	"log"
 
+	"github.com/georgysavva/scany/v2/pgxscan"
 	"github.com/gofiber/fiber/v2"
-	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 var dburl = env.PgUri()
 
-var dbPool, err = pgxpool.Connect(context.Background(), dburl)
+var ctx = context.Background()
 
-var ID int32
-var Name string
-var Quote string
-var Media string
+var db, _ = pgxpool.New(ctx, dburl)
 
 type Character struct {
 	ID int32
@@ -29,41 +25,12 @@ type Character struct {
 var CharData []Character 
 func GetCharData(c *fiber.Ctx) error {
 
-	rows, err := dbPool.Query(context.Background(), "select * from characters")
-	if err != nil {
-		log.Fatal("error while executing query")
-	}
+	var characters []*Character
 
-	for rows.Next() {
-		values, err := rows.Values()
-
-		if err != nil {
-			log.Fatal("error while iterating dataset")
-		}
-		
-		ID = values[0].(int32)
-		Name = values[1].(string)
-		Quote = values[2].(string)
-		Media = values[3].(string)
-
-		data := Character {
-			ID: ID,
-			Name: Name,
-			Quote:Quote,
-			Media:Media,
-		}
-		
-		CharData = append(CharData, data)
-		
+	pgxscan.Select(ctx, db, &characters, `SELECT * from characters`)
+		return c.JSON(characters)
 	}	
 	 
-	
-	// defer dbPool.Close()	
-		fmt.Println(CharData)
-	return c.JSON(CharData)
-
-
-}
 
 func GetAllCharData(c *fiber.Ctx) error {
 	return c.SendString("All Character Data")

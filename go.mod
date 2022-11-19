@@ -13,13 +13,18 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
 	github.com/jackc/pgtype v1.12.0 // indirect
 	github.com/jackc/puddle v1.3.0 // indirect
-	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
-	golang.org/x/text v0.3.7 // indirect
+	github.com/jackc/puddle/v2 v2.1.2 // indirect
+	go.uber.org/atomic v1.10.0 // indirect
+	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
+	golang.org/x/sync v0.0.0-20220923202941-7f9b1623fab7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 )
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/georgysavva/scany/v2 v2.0.0
 	github.com/jackc/pgx/v4 v4.17.2
+	github.com/jackc/pgx/v5 v5.1.1
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
