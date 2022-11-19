@@ -1,6 +1,7 @@
 package main
 
 import (
+	"EnderAPI/database"
 	"EnderAPI/handlers"
 
 	"github.com/gofiber/fiber/v2"
@@ -18,7 +19,7 @@ func Routes(app *fiber.App) {
 }
 
 func main() {
-
+	database.DbConnection()
 	app := fiber.New()
 
 		Routes(app)
