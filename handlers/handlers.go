@@ -22,18 +22,20 @@ type Character struct {
 	Media string
 }
 
-var CharData []Character 
 func GetCharData(c *fiber.Ctx) error {
+	var character []*Character
 
-	var characters []*Character
+	pgxscan.Select(ctx, db, &character, `SELECT * from characters WHERE id = $1`, c.Params("id"))
+		return c.JSON(character)
 
-	pgxscan.Select(ctx, db, &characters, `SELECT * from characters`)
-		return c.JSON(characters)
 	}	
 	 
 
 func GetAllCharData(c *fiber.Ctx) error {
-	return c.SendString("All Character Data")
+	var characters []*Character
+
+	pgxscan.Select(ctx, db, &characters, `SELECT * from characters`)
+		return c.JSON(characters)
 }
 
 func GetNames(c *fiber.Ctx) error {
