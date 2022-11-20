@@ -51,7 +51,7 @@ func GetCharData(c *fiber.Ctx) error {
 func GetAllCharData(c *fiber.Ctx) error {
 	var characters []*Character
 
-	pgxscan.Select(ctx, db, &characters, `SELECT * from characters`)
+	pgxscan.Select(ctx, db, &characters, `SELECT * from characters ORDER by id`)
 		return c.JSON(characters)
 }
 
@@ -107,3 +107,4 @@ func GetAllAudio(c *fiber.Ctx) error {
 	pgxscan.Select(ctx, db, &audios, `SELECT audio from characters`)
 	return c.JSON(audios)
 }
+
