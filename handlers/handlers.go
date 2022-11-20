@@ -63,18 +63,47 @@ func GetNames(c *fiber.Ctx) error {
 }
 
 func GetName(c *fiber.Ctx) error {
-	return c.SendString("Single Character Name")
+	var name []*Name
+
+	pgxscan.Select(ctx, db, &name, `SELECT name from characters WHERE id = $1`, c.Params("id"))
+	return c.JSON(name[0])
 }
 
 func GetQuote(c *fiber.Ctx) error {
-	return c.SendString("Single Character Quote")
+	var quote []*Quote
+
+	pgxscan.Select(ctx, db, &quote, `SELECT quote from characters WHERE id = $1`, c.Params("id"))
+	return c.JSON(quote[0])
 }
 func GetQuotes(c *fiber.Ctx) error {
-	return c.SendString("All Character Quotes")
+	var quotes []*Quote
+
+	pgxscan.Select(ctx, db, &quotes, `SELECT quote from characters`)
+	return c.JSON(quotes)
 }
 func GetMedia(c *fiber.Ctx) error {
-	return c.SendString("Single Character Media")
+	var media []*Media
+
+	pgxscan.Select(ctx, db, &media, `SELECT media from characters WHERE id = $1`, c.Params("id"))
+	return c.JSON(media)
 }
 func GetAllMedia(c *fiber.Ctx) error {
-	return c.SendString("All Character media")
+	var medias []*Media
+
+	pgxscan.Select(ctx, db, &medias, `SELECT media from characters`)
+	return c.JSON(medias)
+}
+
+func GetAudio(c *fiber.Ctx) error {
+	var audio []*Audio
+
+	pgxscan.Select(ctx, db, &audio, `SELECT audio from characters WHERE id = $1`, c.Params("id"))
+	return c.JSON(audio)
+}
+
+func GetAllAudio(c *fiber.Ctx) error {
+	var audios []*Audio
+
+	pgxscan.Select(ctx, db, &audios, `SELECT audio from characters`)
+	return c.JSON(audios)
 }
