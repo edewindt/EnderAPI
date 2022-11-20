@@ -4,6 +4,7 @@ import (
 	"EnderAPI/handlers"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func Routes(app *fiber.App) {
@@ -17,11 +18,15 @@ func Routes(app *fiber.App) {
 	app.Get("/media/:id", handlers.GetMedia)
 	app.Get("/audio", handlers.GetAllAudio)
 	app.Get("/audio/:id", handlers.GetAudio)
+
 }
 
 func main() {
 
 	app := fiber.New()
+	app.Static("/", "./public")
+	// Default config
+app.Use(cors.New())
 
 		Routes(app)
 
