@@ -20,13 +20,30 @@ type Character struct {
 	Name string
 	Quote string
 	Media string
+	Audio string
+}
+
+type Name struct {
+	Name string
+}
+
+type Quote struct {
+	Quote string
+}
+
+type Media struct {
+	Media string
+}
+
+type Audio struct {
+	Audio string
 }
 
 func GetCharData(c *fiber.Ctx) error {
 	var character []*Character
 
 	pgxscan.Select(ctx, db, &character, `SELECT * from characters WHERE id = $1`, c.Params("id"))
-		return c.JSON(character)
+		return c.JSON(character[0])
 
 	}	
 	 
@@ -39,7 +56,10 @@ func GetAllCharData(c *fiber.Ctx) error {
 }
 
 func GetNames(c *fiber.Ctx) error {
-	return c.SendString("All Character Names")
+	var names []*Name
+
+	pgxscan.Select(ctx,db, &names, `SELECT name from characters`)
+	return c.JSON(names)
 }
 
 func GetName(c *fiber.Ctx) error {
