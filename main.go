@@ -10,6 +10,7 @@ import (
 func Routes(app *fiber.App) {
 	app.Get("/data", handlers.GetAllCharData)
 	app.Get("/data/:id", handlers.GetCharData)
+	app.Get("/armies", handlers.GetAllArmyData)
 }
 
 func main() {

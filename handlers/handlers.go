@@ -26,6 +26,12 @@ type Character struct {
 	Species string
 }
 
+type Army struct {
+	ID int32
+	Name string
+	NotableMembers []string
+}
+
 
 func GetCharData(c *fiber.Ctx) error {
 	var character []*Character
@@ -41,4 +47,12 @@ func GetAllCharData(c *fiber.Ctx) error {
 
 	pgxscan.Select(ctx, db, &characters, `SELECT * from characters ORDER by id`)
 		return c.JSON(characters)
+}
+
+func GetAllArmyData(c * fiber.Ctx) error {
+	var armies []*Army
+
+	pgxscan.Select(ctx, db, &armies, `SELECT * from armies ORDER by id`)
+		return c.JSON(armies)
+
 }
