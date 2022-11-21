@@ -30,6 +30,16 @@ type Army struct {
 	ID int32
 	Name string
 	NotableMembers []string
+	Media string
+}
+
+type Species struct {
+	ID int32
+	Name string
+	Ramen bool
+	Varelse bool
+	Behavior string
+	Media string
 }
 
 
@@ -55,4 +65,26 @@ func GetAllArmyData(c * fiber.Ctx) error {
 	pgxscan.Select(ctx, db, &armies, `SELECT * from armies ORDER by id`)
 		return c.JSON(armies)
 
+}
+
+func GetArmyData(c * fiber.Ctx) error {
+	var army []*Army
+
+	pgxscan.Select(ctx, db, &army, `SELECT * from armies WHERE id = $1`, c.Params("id"))
+		return c.JSON(army[0])
+
+}
+
+func GetSpecies(c *fiber.Ctx) error {
+	var species []*Species
+
+	pgxscan.Select(ctx, db, &species, `SELECT * from species WHERE id = $1`, c.Params("id"))
+	return c.JSON(species[0])
+}
+
+func GetAllSpecies(c *fiber.Ctx) error {
+	var species []*Species
+
+	pgxscan.Select(ctx, db, &species, `SELECT * from species ORDER by id`)
+		return c.JSON(species)
 }

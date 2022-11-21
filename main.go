@@ -11,6 +11,9 @@ func Routes(app *fiber.App) {
 	app.Get("/data", handlers.GetAllCharData)
 	app.Get("/data/:id", handlers.GetCharData)
 	app.Get("/armies", handlers.GetAllArmyData)
+	app.Get("/armies/:id", handlers.GetArmyData)
+	app.Get("/species", handlers.GetAllSpecies)
+	app.Get("/species/:id", handlers.GetSpecies)
 }
 
 func main() {
