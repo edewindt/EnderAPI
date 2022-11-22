@@ -3,6 +3,7 @@ package handlers
 import (
 	"EnderAPI/env"
 	"context"
+	"log"
 
 	"github.com/georgysavva/scany/v2/pgxscan"
 	"github.com/gofiber/fiber/v2"
@@ -61,10 +62,15 @@ type Species struct {
 // @Router       /characters/{id} [get]
 func GetCharData(c *fiber.Ctx) error {
 	var character []*Character
-
+defer func() {
+		if err := recover(); err != nil {
+			log.Println("panic occurred:", err)
+		}
+	}()
 	pgxscan.Select(ctx, db, &character, `SELECT * from characters WHERE id = $1`, c.Params("id"))
-		return c.JSON(character[0])
 
+	return c.JSON(character[0])
+	
 	}	
 	 
 // GetAllCharData godoc
