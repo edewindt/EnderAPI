@@ -15,6 +15,11 @@ var ctx = context.Background()
 
 var db, _ = pgxpool.New(ctx, dburl)
 
+type HTTPError struct {
+	Status string
+	Message string
+}
+
 type Character struct {
 	ID int32 `json:"id"`
 	Name string `json:"name"`
@@ -42,7 +47,18 @@ type Species struct {
 	Media string `json:"media"`
 }
 
-
+// GetCharData godoc
+// @Summary      Get a single character's data
+// @Description  get character by ID
+// @Tags         character
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Character ID"
+// @Success      200  {object}  Character
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /characters/{id} [get]
 func GetCharData(c *fiber.Ctx) error {
 	var character []*Character
 
@@ -51,7 +67,17 @@ func GetCharData(c *fiber.Ctx) error {
 
 	}	
 	 
-
+// GetAllCharData godoc
+// @Summary      Get all character data
+// @Description  get all characters
+// @Tags         characters
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  Character
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /characters/{id} [get]
 func GetAllCharData(c *fiber.Ctx) error {
 	var characters []*Character
 
@@ -59,6 +85,17 @@ func GetAllCharData(c *fiber.Ctx) error {
 		return c.JSON(characters)
 }
 
+// GetAllArmyData godoc
+// @Summary      Get all army data
+// @Description  get all armies
+// @Tags         armies
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  Army
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /armies [get]
 func GetAllArmyData(c * fiber.Ctx) error {
 	var armies []*Army
 
@@ -67,6 +104,18 @@ func GetAllArmyData(c * fiber.Ctx) error {
 
 }
 
+// GetArmyData godoc
+// @Summary      Get a single army's data
+// @Description  get army by ID
+// @Tags         data
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Army ID"
+// @Success      200  {object}  Army
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /armies/{id} [get]
 func GetArmyData(c * fiber.Ctx) error {
 	var army []*Army
 
@@ -75,6 +124,18 @@ func GetArmyData(c * fiber.Ctx) error {
 
 }
 
+// GetSpecies godoc
+// @Summary      Get a single species data
+// @Description  get species by ID
+// @Tags         data
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Species ID"
+// @Success      200  {object}  Species
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /species/{id} [get]
 func GetSpecies(c *fiber.Ctx) error {
 	var species []*Species
 
@@ -82,6 +143,17 @@ func GetSpecies(c *fiber.Ctx) error {
 	return c.JSON(species[0])
 }
 
+// GetAllSpecies godoc
+// @Summary      Get all species data
+// @Description  get all species
+// @Tags         data
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  Species
+// @Failure      400  {object}  HTTPError
+// @Failure      404  {object}  HTTPError
+// @Failure      500  {object}  HTTPError
+// @Router       /species [get]
 func GetAllSpecies(c *fiber.Ctx) error {
 	var species []*Species
 

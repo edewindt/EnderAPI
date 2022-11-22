@@ -1,15 +1,213 @@
 basePath: /
+definitions:
+  handlers.Army:
+    properties:
+      id:
+        type: integer
+      media:
+        type: string
+      name:
+        type: string
+      notable_members:
+        items:
+          type: string
+        type: array
+    type: object
+  handlers.Character:
+    properties:
+      audio:
+        type: string
+      bio:
+        type: string
+      id:
+        type: integer
+      media:
+        type: string
+      name:
+        type: string
+      quote:
+        type: string
+      species:
+        type: string
+      trivia:
+        type: string
+    type: object
+  handlers.HTTPError:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  handlers.Species:
+    properties:
+      behavior:
+        type: string
+      id:
+        type: integer
+      media:
+        type: string
+      name:
+        type: string
+      ramen:
+        type: boolean
+      varelse:
+        type: boolean
+    type: object
 host: localhost:3000
 info:
   contact:
-    email: fiber@swagger.io
-    name: API Support
+    email: elias@edewindt.com
+    name: Elias De Windt
   description: This is an open source REST API for Enders Game
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
   title: The Ender API
   version: "1.0"
-paths: {}
+paths:
+  /armies:
+    get:
+      consumes:
+      - application/json
+      description: get all armies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Army'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get all army data
+      tags:
+      - armies
+  /armies/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get army by ID
+      parameters:
+      - description: Army ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Army'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get a single army's data
+      tags:
+      - data
+  /characters/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get all characters
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Character'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get all character data
+      tags:
+      - characters
+  /species:
+    get:
+      consumes:
+      - application/json
+      description: get all species
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Species'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get all species data
+      tags:
+      - data
+  /species/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get species by ID
+      parameters:
+      - description: Species ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Species'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get a single species data
+      tags:
+      - data
 swagger: "2.0"
