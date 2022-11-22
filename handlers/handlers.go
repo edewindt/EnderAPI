@@ -16,30 +16,30 @@ var ctx = context.Background()
 var db, _ = pgxpool.New(ctx, dburl)
 
 type Character struct {
-	ID int32
-	Name string
-	Quote string
-	Media string
-	Audio string
-	Bio string
-	Trivia string
-	Species string
+	ID int32 `json:"id"`
+	Name string `json:"name"`
+	Quote string `json:"quote"`
+	Media string `json:"media"`
+	Audio string `json:"audio"`
+	Bio string `json:"bio"`
+	Trivia string `json:"trivia"`
+	Species string `json:"species"`
 }
 
 type Army struct {
-	ID int32
-	Name string
-	NotableMembers []string
-	Media string
+	ID int32 `json:"id"`
+	Name string `json:"name"`
+	NotableMembers []string `json:"notable_members"`
+	Media string `json:"media"`
 }
 
 type Species struct {
-	ID int32
-	Name string
-	Ramen bool
-	Varelse bool
-	Behavior string
-	Media string
+	ID int32 `json:"id"`
+	Name string `json:"name"`
+	Ramen bool `json:"ramen"`
+	Varelse bool `json:"varelse"`
+	Behavior string `json:"behavior"`
+	Media string `json:"media"`
 }
 
 
