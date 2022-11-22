@@ -124,6 +124,11 @@ func GetAllArmyData(c * fiber.Ctx) error {
 // @Router       /armies/{id} [get]
 func GetArmyData(c * fiber.Ctx) error {
 	var army []*Army
+	defer func() {
+		if err := recover(); err != nil {
+			log.Println("panic occurred:", err)
+		}
+	}()
 
 	pgxscan.Select(ctx, db, &army, `SELECT * from armies WHERE id = $1`, c.Params("id"))
 		return c.JSON(army[0])
@@ -144,6 +149,11 @@ func GetArmyData(c * fiber.Ctx) error {
 // @Router       /species/{id} [get]
 func GetSpecies(c *fiber.Ctx) error {
 	var species []*Species
+	defer func() {
+		if err := recover(); err != nil {
+			log.Println("panic occurred:", err)
+		}
+	}()
 
 	pgxscan.Select(ctx, db, &species, `SELECT * from species WHERE id = $1`, c.Params("id"))
 	return c.JSON(species[0])
