@@ -89,7 +89,7 @@ paths:
             $ref: '#/definitions/handlers.HTTPError'
       summary: Get all army data
       tags:
-      - armies
+      - Armies
   /armies/{id}:
     get:
       consumes:
@@ -122,8 +122,8 @@ paths:
             $ref: '#/definitions/handlers.HTTPError'
       summary: Get a single army's data
       tags:
-      - data
-  /characters/{id}:
+      - Armies
+  /characters:
     get:
       consumes:
       - application/json
@@ -149,7 +149,40 @@ paths:
             $ref: '#/definitions/handlers.HTTPError'
       summary: Get all character data
       tags:
-      - characters
+      - Characters
+  /characters/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get character by ID
+      parameters:
+      - description: Character ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Character'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get a single character's data
+      tags:
+      - Characters
   /species:
     get:
       consumes:
@@ -176,7 +209,7 @@ paths:
             $ref: '#/definitions/handlers.HTTPError'
       summary: Get all species data
       tags:
-      - data
+      - Species
   /species/{id}:
     get:
       consumes:
@@ -209,5 +242,5 @@ paths:
             $ref: '#/definitions/handlers.HTTPError'
       summary: Get a single species data
       tags:
-      - data
+      - Species
 swagger: "2.0"

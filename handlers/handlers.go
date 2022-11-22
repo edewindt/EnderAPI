@@ -50,7 +50,7 @@ type Species struct {
 // GetCharData godoc
 // @Summary      Get a single character's data
 // @Description  get character by ID
-// @Tags         character
+// @Tags         Characters
 // @Accept       json
 // @Produce      json
 // @Param        id   path      int  true  "Character ID"
@@ -70,14 +70,14 @@ func GetCharData(c *fiber.Ctx) error {
 // GetAllCharData godoc
 // @Summary      Get all character data
 // @Description  get all characters
-// @Tags         characters
+// @Tags         Characters
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Character
 // @Failure      400  {object}  HTTPError
 // @Failure      404  {object}  HTTPError
 // @Failure      500  {object}  HTTPError
-// @Router       /characters/{id} [get]
+// @Router       /characters [get]
 func GetAllCharData(c *fiber.Ctx) error {
 	var characters []*Character
 
@@ -88,7 +88,7 @@ func GetAllCharData(c *fiber.Ctx) error {
 // GetAllArmyData godoc
 // @Summary      Get all army data
 // @Description  get all armies
-// @Tags         armies
+// @Tags         Armies
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Army
@@ -107,7 +107,7 @@ func GetAllArmyData(c * fiber.Ctx) error {
 // GetArmyData godoc
 // @Summary      Get a single army's data
 // @Description  get army by ID
-// @Tags         data
+// @Tags         Armies
 // @Accept       json
 // @Produce      json
 // @Param        id   path      int  true  "Army ID"
@@ -127,7 +127,7 @@ func GetArmyData(c * fiber.Ctx) error {
 // GetSpecies godoc
 // @Summary      Get a single species data
 // @Description  get species by ID
-// @Tags         data
+// @Tags         Species
 // @Accept       json
 // @Produce      json
 // @Param        id   path      int  true  "Species ID"
@@ -146,7 +146,7 @@ func GetSpecies(c *fiber.Ctx) error {
 // GetAllSpecies godoc
 // @Summary      Get all species data
 // @Description  get all species
-// @Tags         data
+// @Tags         Species
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Species

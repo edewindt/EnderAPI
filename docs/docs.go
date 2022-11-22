@@ -29,7 +29,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "armies"
+                    "Armies"
                 ],
                 "summary": "Get all army data",
                 "responses": {
@@ -70,7 +70,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "data"
+                    "Armies"
                 ],
                 "summary": "Get a single army's data",
                 "parameters": [
@@ -110,7 +110,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/characters/{id}": {
+        "/characters": {
             "get": {
                 "description": "get all characters",
                 "consumes": [
@@ -120,9 +120,59 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "characters"
+                    "Characters"
                 ],
                 "summary": "Get all character data",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Character"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/characters/{id}": {
+            "get": {
+                "description": "get character by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Characters"
+                ],
+                "summary": "Get a single character's data",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Character ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -161,7 +211,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "data"
+                    "Species"
                 ],
                 "summary": "Get all species data",
                 "responses": {
@@ -202,7 +252,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "data"
+                    "Species"
                 ],
                 "summary": "Get a single species data",
                 "parameters": [
