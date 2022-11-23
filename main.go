@@ -2,6 +2,7 @@ package main
 
 import (
 	"EnderAPI/handlers"
+	"os"
 
 	_ "EnderAPI/docs"
 
@@ -44,5 +45,5 @@ app.Use(cors.New(cors.Config{
 
 		Routes(app)
 
-	app.Listen(":3000")
+	app.Listen(os.Getenv("PORT"))
 }
