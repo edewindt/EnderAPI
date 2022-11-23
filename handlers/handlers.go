@@ -1,16 +1,17 @@
 package handlers
 
 import (
-	"EnderAPI/env"
 	"context"
 	"log"
+	"os"
 
 	"github.com/georgysavva/scany/v2/pgxscan"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-var dburl = env.PgUri()
+
+var dburl = os.Getenv("PG_URI")
 
 var ctx = context.Background()
 
@@ -56,9 +57,6 @@ type Species struct {
 // @Produce      json
 // @Param        id   path      int  true  "Character ID"
 // @Success      200  {object}  Character
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /characters/{id} [get]
 func GetCharData(c *fiber.Ctx) error {
 	var character []*Character
@@ -80,9 +78,6 @@ defer func() {
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Character
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /characters [get]
 func GetAllCharData(c *fiber.Ctx) error {
 	var characters []*Character
@@ -98,9 +93,6 @@ func GetAllCharData(c *fiber.Ctx) error {
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Army
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /armies [get]
 func GetAllArmyData(c * fiber.Ctx) error {
 	var armies []*Army
@@ -118,9 +110,6 @@ func GetAllArmyData(c * fiber.Ctx) error {
 // @Produce      json
 // @Param        id   path      int  true  "Army ID"
 // @Success      200  {object}  Army
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /armies/{id} [get]
 func GetArmyData(c * fiber.Ctx) error {
 	var army []*Army
@@ -143,9 +132,6 @@ func GetArmyData(c * fiber.Ctx) error {
 // @Produce      json
 // @Param        id   path      int  true  "Species ID"
 // @Success      200  {object}  Species
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /species/{id} [get]
 func GetSpecies(c *fiber.Ctx) error {
 	var species []*Species
@@ -166,9 +152,6 @@ func GetSpecies(c *fiber.Ctx) error {
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  Species
-// @Failure      400  {object}  HTTPError
-// @Failure      404  {object}  HTTPError
-// @Failure      500  {object}  HTTPError
 // @Router       /species [get]
 func GetAllSpecies(c *fiber.Ctx) error {
 	var species []*Species

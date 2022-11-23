@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/swagger"
 )
 
@@ -14,9 +15,8 @@ import (
 // @version 1.0
 // @description This is an open source REST API for Enders Game
 // @contact.name Elias De Windt
+// @contact.url https://edewindt.com/contact-me/
 // @contact.email elias@edewindt.com
-// @host localhost:3000
-// @BasePath /
 
 func Routes(app *fiber.App) {
 
@@ -31,9 +31,10 @@ func Routes(app *fiber.App) {
 }
 
 func main() {
-
 	app := fiber.New()
 	app.Static("/", "./public")
+
+	app.Use(recover.New())
 
 // Or extend your config for customization
 app.Use(cors.New(cors.Config{

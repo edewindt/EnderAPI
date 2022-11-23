@@ -1,4 +1,3 @@
-basePath: /
 definitions:
   handlers.Army:
     properties:
@@ -32,13 +31,6 @@ definitions:
       trivia:
         type: string
     type: object
-  handlers.HTTPError:
-    properties:
-      message:
-        type: string
-      status:
-        type: string
-    type: object
   handlers.Species:
     properties:
       behavior:
@@ -54,11 +46,11 @@ definitions:
       varelse:
         type: boolean
     type: object
-host: localhost:3000
 info:
   contact:
     email: elias@edewindt.com
     name: Elias De Windt
+    url: https://edewindt.com/contact-me/
   description: This is an open source REST API for Enders Game
   title: The Ender API
   version: "1.0"
@@ -75,18 +67,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Army'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get all army data
       tags:
       - Armies
@@ -108,18 +88,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Army'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get a single army's data
       tags:
       - Armies
@@ -135,18 +103,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Character'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get all character data
       tags:
       - Characters
@@ -168,18 +124,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Character'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get a single character's data
       tags:
       - Characters
@@ -195,18 +139,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Species'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get all species data
       tags:
       - Species
@@ -228,18 +160,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Species'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
       summary: Get a single species data
       tags:
       - Species
