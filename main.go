@@ -45,7 +45,7 @@ func getPort() string {
 func main() {
 
 	fmt.Println("Started")
-	os.Getenv("Hello")
+	fmt.Println(os.Getenv("HELLO"))
 	app := fiber.New()
 	app.Static("/", "./public")
 
