@@ -2,6 +2,7 @@ package main
 
 import (
 	"EnderAPI/handlers"
+	"fmt"
 	"os"
 
 	_ "EnderAPI/docs"
@@ -30,8 +31,21 @@ func Routes(app *fiber.App) {
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
 }
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":3000"
+	} else {
+		port = ":" + port
+	}
+
+	return port
+}
 
 func main() {
+
+	fmt.Println("Started")
+	os.Getenv("Hello")
 	app := fiber.New()
 	app.Static("/", "./public")
 
@@ -45,5 +59,5 @@ app.Use(cors.New(cors.Config{
 
 		Routes(app)
 
-	app.Listen(os.Getenv("PORT"))
+	app.Listen(getPort())
 }
