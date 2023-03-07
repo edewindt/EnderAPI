@@ -52,7 +52,6 @@ func main() {
 	app.Use(recover.New())
 
 // Or extend your config for customization
-//Hello from termux, testing change
 app.Use(cors.New(cors.Config{
     AllowOrigins: "*",
     AllowHeaders:  "Origin, Content-Type, Accept",
